@@ -47,7 +47,7 @@ public class Button extends UIElement {
     buttonText = s;
   }
 
-  protected String getText() {
+  public String getText() {
     return buttonText;
   }
   
@@ -74,13 +74,15 @@ public class Button extends UIElement {
     if(f != null) {
       g.setFont(f);
     }
-    g.fillText(buttonText, absPos.x + 5, absPos.y + size.y - 5, size.x - 10);
+    
+    Vec2d textPos = UIElement.centerText(buttonText, f, absPos, size);
+    g.fillText(buttonText, textPos.x, textPos.y + size.y * .4);
     if(hovered)
       hoverDraw(g);
   }
   
   public void hoverDraw(GraphicsContext g) {
-    g.setStroke(Color.GRAY);
+    g.setStroke(Color.WHITE);
     g.strokeRoundRect(absPos.x, absPos.y, size.x, size.y, 5, 5);
   }
 

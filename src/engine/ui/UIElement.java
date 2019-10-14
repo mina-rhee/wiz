@@ -8,6 +8,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import template.FontMetrics;
 import template.Vec2d;
 
 /*
@@ -127,6 +129,12 @@ public abstract class UIElement {
 
   public void setParent(UIElement parent) {
     this.parent = parent;
+  }
+  
+  public static Vec2d centerText(String text, Font f, Vec2d tl, Vec2d s) {
+    FontMetrics fm = new FontMetrics(text, f);
+    Vec2d textSize = new Vec2d(fm.width, fm.height);
+    return tl.plus(s.minus(textSize).smult(.5));
   }
 
 }

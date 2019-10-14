@@ -228,7 +228,7 @@ public class SpacePartition {
       AABShape b = d.getSpace().getShape();
       Vec2d tl = b.getTopLeft().toVec2d();
       Vec2d s = b.getSize().toVec2d();
-      return tl.plus(s.smult(.3));
+      return tl.plus(s.smult(.1));
     } else {
       return getSpawnPos(d.getLeft());
     }
@@ -238,10 +238,14 @@ public class SpacePartition {
     if(d.getRight() == null) {
       AABShape b = d.getSpace().getShape();
       Vec2d tl = b.getTopLeft().toVec2d();
-      Vec2d s = b.getSize().toVec2d();
-      return tl.plus(s.smult(.5));
+      Vec2d s = b.getSize().toVec2d();;
+      return tl.plus(s.smult(.1));
     } else {
-      return getSpawnPos(d.getRight());
+      if(r.nextBoolean()) {
+        return getDoorPos(d.getRight());
+      } else {
+        return getDoorPos(d.getLeft());
+      }
     }
   }
   

@@ -38,6 +38,11 @@ public class MiniMapViewport extends Viewport<WizWorld> {
         smult(scale / WizWorld.SCALE).plus(getAbsPosition());
     g.setFill(Color.AQUA);
     g.fillOval(playerPos.x, playerPos.y + scale /2 , scale - 2, scale - 2);
+    
+    Vec2d doorPos = w.getDoor().getPosition(). 
+        smult(scale / WizWorld.SCALE).plus(getAbsPosition());
+    g.setStroke(Color.DEEPPINK);
+    g.strokeRect(doorPos.x, doorPos.y, scale, scale);
   }
   
   public void updateWalls() {

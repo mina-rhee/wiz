@@ -42,7 +42,7 @@ public class WizWorld extends GameWorld<WizObject> {
   public static final Image doorSheet = new Image("spritesheets/door.png");
   public static final Vec2d doorPos = new Vec2d(100,0);
   public static final Vec2d doorSize = new Vec2d(280,480);
-  public static final double doorScale = 150;
+  public static final double doorScale = 200;
   public static final int doorFNum = 26;
   
   public boolean upKeyDown = false;
@@ -54,6 +54,7 @@ public class WizWorld extends GameWorld<WizObject> {
   public static Vec2d botRight;
   
   private Player p;
+  private Door door;
   
   private Vec2i dungeonSize;
   private int minDepth;
@@ -87,8 +88,8 @@ public class WizWorld extends GameWorld<WizObject> {
     Vec2d spawnPos = SpacePartition.getSpawnPos(d).smult(SCALE);
     p = new Player(spawnPos, v);
     
-    Vec2d doorPos = SpacePartition.getDoorPos(d).smult(SCALE);
-    Door door = new Door(doorPos);
+    Vec2d doorPos = SpacePartition.getDoorPos(d.getRight()).smult(SCALE);
+    door = new Door(doorPos);
     
     WizDrawSystem drawSystem = new WizDrawSystem(this, v, d);
     drawSystem.addObject(p);
@@ -164,6 +165,10 @@ public class WizWorld extends GameWorld<WizObject> {
   
   public Player getPlayer() {
     return p;
+  }
+  
+  public Door getDoor() {
+    return door;
   }
 
 }
